@@ -1,0 +1,30 @@
+name: Weekly league data
+
+# Rebuilds the league-wide play-by-play dataset (every team's shots + shifts →
+# xG → per-player on-ice aggregates) that powers NHL-percentile rankings and the
+# per-player on-ice/shot-map charts (incl. players the Jets just acquired). Heavy
+# and resumable, so once a week is plenty. Uses the same secrets as the daily
+# refresh: REFRESH_URL + REFRESH_TOKEN.
+#
+# Note: this only TRIGGERS the job — the endpoint returns immediately and the
+# pipeline runs in the background on the app (~30+ min). Watch progress in the
+# app's league-refresh.log / Railway logs, not this Action's output.
+
+on:
+  schedule:
+    - cron: "0 9 * * 1" # Mondays 09:00 UTC (early-morning North America, off-peak)
+  workflow_dispatch: {}
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger league rebuild
+        run: |
+          code=$(curl -sS -o /tmp/league.json -w "%{http_code}" -X POST \
+            -H "Authorization: Bearer ${{ secrets.REFRESH_TOKEN }}" \
+            "${{ secrets.REFRESH_URL }}/api/refresh-league")
+          echo "HTTP $code"
+          cat /tmp/league.json || true
+          echo
+          test "$code" = "200"

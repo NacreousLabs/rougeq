@@ -1,0 +1,64 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* Class-based dark mode: `dark:` utilities apply when <html> has the `dark` class.
+   The theme is resolved by an inline script in the layout (localStorage → system). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  /* Condensed display face → `font-display` utility, used for Broadcast-style
+     headings and stat values. Falls back to a narrow system stack. */
+  --font-display: var(--font-oswald), "Arial Narrow", system-ui, sans-serif;
+}
+
+/* Winnipeg Blue Bombers brand tokens → generate bg-bombers-navy, text-bombers-gold, etc. */
+@theme {
+  --color-bombers-navy: #041e42;
+  --color-bombers-gold: #ffc72c;
+  --color-bombers-blue: #0b63a3;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Shared data-table style. Condensed display headers tie it to the Broadcast
+   look; zebra striping + a brand-tinted hover row keep dense stat tables easy
+   to scan. Numeric alignment (text-right tabular-nums) stays per-cell so data
+   reads in the clear body font, not the condensed display face. */
+@layer components {
+  .stat-table {
+    @apply w-full border-collapse text-sm;
+  }
+  .stat-table thead th {
+    @apply whitespace-nowrap border-b-2 border-zinc-200 px-2 py-2 text-left align-bottom font-display text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:border-zinc-700 dark:text-zinc-400;
+  }
+  .stat-table tbody td {
+    @apply px-2 py-2 align-middle;
+  }
+  .stat-table tbody tr {
+    @apply border-b border-zinc-100 transition-colors dark:border-zinc-800/60;
+  }
+  .stat-table tbody tr:nth-child(even) {
+    @apply bg-zinc-50/70 dark:bg-zinc-900/40;
+  }
+  .stat-table tbody tr:hover {
+    @apply bg-bombers-gold/10;
+  }
+}
