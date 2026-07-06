@@ -63,9 +63,54 @@ export const teamRatings = sqliteTable(
   (t) => ({ pk: primaryKey({ columns: [t.tricode, t.season] }) }),
 );
 
+// Players, keyed by CFL player id (parsed from the stats-page player URL).
+export const players = sqliteTable("players", {
+  id: integer("id").primaryKey(),
+  name: text("name").notNull(),
+  teamTricode: text("team_tricode"),
+});
+
+// Season box-score totals per player per stat category (passing/rushing/receiving/…),
+// from get_league_stats. `stats` is a JSON object of parsed numeric fields keyed by
+// mapped name (see scripts/players.ts). Rate stats + league percentiles are derived at
+// read time from these rows. See ANALYTICS-SPEC.md §3.
+export const playerSeason = sqliteTable(
+  "player_season",
+  {
+    playerId: integer("player_id").notNull(),
+    season: integer("season").notNull(),
+    category: text("category").notNull(), // passing | rushing | receiving | …
+    teamTricode: text("team_tricode"),
+    gamesPlayed: integer("games_played"),
+    stats: text("stats").notNull().default("{}"), // JSON of parsed stat fields
+    updatedAt: text("updated_at").notNull(),
+  },
+  (t) => ({ pk: primaryKey({ columns: [t.playerId, t.season, t.category] }) }),
+);
+
+// Monte-Carlo season projections per team (simulate the remaining schedule off Elo).
+// Rebuilt by scripts/projections.ts. See ANALYTICS-SPEC.md §2.4.
+export const projections = sqliteTable(
+  "projections",
+  {
+    tricode: text("tricode").notNull(),
+    season: integer("season").notNull(),
+    sims: integer("sims").notNull(),
+    projWins: real("proj_wins").notNull(),
+    projLosses: real("proj_losses").notNull(),
+    playoffPct: real("playoff_pct").notNull(), // % of sims making the playoffs
+    divWinPct: real("div_win_pct").notNull(), // % of sims winning the division
+    updatedAt: text("updated_at").notNull(),
+  },
+  (t) => ({ pk: primaryKey({ columns: [t.tricode, t.season] }) }),
+);
+
 export type Team = typeof teams.$inferSelect;
 export type Game = typeof games.$inferSelect;
 export type TeamRating = typeof teamRatings.$inferSelect;
+export type Player = typeof players.$inferSelect;
+export type PlayerSeason = typeof playerSeason.$inferSelect;
+export type Projection = typeof projections.$inferSelect;
 
 // ── CMS / admin (sport-agnostic; carried over from the shell) ────────────────
 

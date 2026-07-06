@@ -10,8 +10,10 @@
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "ingest": "tsx scripts/ingest.ts",
+    "players": "tsx scripts/players.ts",
     "ratings": "tsx scripts/ratings.ts",
-    "refresh": "tsx scripts/ingest.ts && tsx scripts/ratings.ts"
+    "projections": "tsx scripts/projections.ts",
+    "refresh": "tsx scripts/ingest.ts && tsx scripts/players.ts && tsx scripts/ratings.ts && tsx scripts/projections.ts"
   },
   "engines": {
     "node": "22.x"
