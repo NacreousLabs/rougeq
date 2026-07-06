@@ -3,7 +3,7 @@ import { ImageResponse } from "next/og";
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
-// Apple touch icon: the puck-Q mark on a navy rounded tile.
+// Apple touch icon: the RougeQ mark on a navy rounded tile.
 export default function AppleIcon() {
   return new ImageResponse(
     (

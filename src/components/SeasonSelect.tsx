@@ -1,13 +1,13 @@
 "use client";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { JETS_SEASONS, formatSeason } from "@/lib/seasons";
+import { SEASONS, formatSeason } from "@/lib/seasons";
 
 /** Season dropdown that updates the `?season=` query param in place.
  *  Optionally restrict to a subset of seasons (e.g. those a player actually played). */
 export function SeasonSelect({
   selected,
-  seasons = JETS_SEASONS,
+  seasons = SEASONS,
 }: {
   selected: number;
   seasons?: number[];

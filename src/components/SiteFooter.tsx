@@ -14,11 +14,11 @@ export function SiteFooter() {
             <p>
               <strong>RougeQ</strong> is an independent, non-commercial fan project.{" "}
               <strong>
-                Not affiliated with, endorsed by, or sponsored by the National Hockey League, the
-                Winnipeg Jets, or any NHL team.
+                Not affiliated with, endorsed by, or sponsored by the Canadian Football League, the
+                Winnipeg Blue Bombers, or any CFL team.
               </strong>{" "}
-              All NHL and team names, marks, logos, and content are the property of their respective
-              owners. Stats and media are drawn from publicly accessible NHL endpoints.
+              All CFL and team names, marks, logos, and content are the property of their respective
+              owners. Stats and media are drawn from publicly accessible CFL sources.
             </p>
           </div>
           <nav className="flex shrink-0 flex-col gap-1.5 md:items-end" aria-label="Footer links">
@@ -28,7 +28,7 @@ export function SiteFooter() {
             <Link href="/methodology" className="hover:text-zinc-700 dark:hover:text-zinc-300">
               Methodology
             </Link>
-            <span>Data: NHL public API</span>
+            <span>Data: CFL public sources</span>
           </nav>
         </div>
       </div>
