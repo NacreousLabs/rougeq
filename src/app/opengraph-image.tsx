@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "RougeQ — Winnipeg Jets analytics";
+export const alt = "RougeQ — Winnipeg Blue Bombers analytics";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -28,12 +28,12 @@ export default function OpengraphImage() {
             <path d="M19.5 21.5 L27.5 29" stroke="#55abc9" strokeWidth="3.2" strokeLinecap="round" />
           </svg>
           <div style={{ display: "flex", fontSize: 150, fontWeight: 800, letterSpacing: -4 }}>
-            <span>Puck</span>
+            <span>Rouge</span>
             <span style={{ color: "#55abc9" }}>Q</span>
           </div>
         </div>
         <div style={{ display: "flex", marginTop: 28, fontSize: 40, color: "#9fb6cc" }}>
-          Winnipeg Jets analytics
+          Winnipeg Blue Bombers analytics
         </div>
       </div>
     ),

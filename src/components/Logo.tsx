@@ -1,5 +1,5 @@
-// RougeQ brand logo. "Puck = Q": a hockey puck (navy disc + ice rim) whose lower-right
-// edge flicks out into the tail of a Q. Brand hexes are inlined so the mark reads on the
+// RougeQ brand logo. A navy disc + light rim whose lower-right edge flicks out into the
+// tail of a Q — the "Q" of RougeQ. Brand hexes are inlined so the mark reads on the
 // navy nav bar and on light/dark pages without theme variants. The `Mark` is exported so
 // the favicon / OG / apple-icon routes reuse the exact same geometry.
 
@@ -41,11 +41,11 @@ export function Logo({
 }: {
   variant?: Variant;
   className?: string;
-  team?: string; // optional team name shown after a divider, e.g. "Jets" → RougeQ / Jets
+  team?: string; // optional team name shown after a divider, e.g. "Blue Bombers"
 }) {
   const wordmark = (
     <span className="text-lg font-bold tracking-tight">
-      Puck<span className="text-bombers-gold">Q</span>
+      Rouge<span className="text-bombers-gold">Q</span>
     </span>
   );
   // Team name reads as a distinct sub-brand badge: a solid ice pill with the team

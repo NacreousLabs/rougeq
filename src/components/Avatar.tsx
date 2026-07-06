@@ -1,4 +1,4 @@
-// Initials avatar — a privacy/rights-friendly placeholder used instead of NHL headshots.
+// Initials avatar — a privacy/rights-friendly placeholder used instead of club headshots.
 
 function initials(name: string): string {
   const parts = name.trim().split(/\s+/);

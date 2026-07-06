@@ -2,9 +2,9 @@ import { TEAM } from "@/lib/team";
 import { ManitobaMark } from "./ManitobaMark";
 import { TEAM_COLORS } from "@/data/teamColors";
 
-// Single place every team "logo" is rendered. We don't show NHL/club logo artwork (it's
+// Single place every team "logo" is rendered. We don't show CFL/club logo artwork (it's
 // trademarked); instead each team is a colored text chip of its tricode (TeamCode), in the
-// team's own colors. The Winnipeg Jets (WPG) show our original ManitobaMark instead.
+// team's own colors. The Winnipeg Blue Bombers (WPG) show our original ManitobaMark instead.
 
 export type TeamLogoSize = "xs" | "sm" | "md" | "lg" | "xl";
 

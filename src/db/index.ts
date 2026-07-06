@@ -4,7 +4,7 @@ import { mkdirSync } from "node:fs";
 import path from "node:path";
 import * as schema from "./schema";
 
-const dbPath = process.env.DATABASE_FILE ?? path.join(process.cwd(), "puckq.db");
+const dbPath = process.env.DATABASE_FILE ?? path.join(process.cwd(), "rougeq.db");
 
 // Ensure the parent directory exists before opening. On a host the DB lives on a
 // mounted volume (e.g. /data) that isn't present during the build, where this

@@ -12,7 +12,7 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
     <div className="mx-auto w-full max-w-md flex-1 px-6 py-20 text-center">
       <h1 className="text-xl font-bold">Something went wrong</h1>
       <p className="mt-2 text-sm text-zinc-500">
-        This page hit an error — often a hiccup talking to the NHL API. Try again in a moment.
+        This page hit an error — often a hiccup fetching the latest CFL data. Try again in a moment.
       </p>
       <div className="mt-6 flex justify-center gap-3">
         <button
