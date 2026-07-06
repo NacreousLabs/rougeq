@@ -74,7 +74,7 @@ export default async function StatsPage() {
                   <td>
                     <div className="flex items-center gap-2">
                       <TeamLogo tricode={r.tricode} size="sm" />
-                      <Link href={`/team/${r.tricode}`} className={`font-medium hover:underline ${wpg ? "text-bombers-navy dark:text-bombers-gold" : ""}`}>
+                      <Link href={`/team/${r.tricode}`} className={`font-medium hover:underline ${wpg ? "text-rouge dark:text-bombers-gold" : ""}`}>
                         {nameOf[r.tricode] ?? r.tricode}
                       </Link>
                     </div>

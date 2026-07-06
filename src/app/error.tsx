@@ -17,7 +17,7 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
       <div className="mt-6 flex justify-center gap-3">
         <button
           onClick={reset}
-          className="rounded-md bg-bombers-navy px-4 py-2 text-sm font-medium text-white hover:opacity-90 dark:bg-bombers-gold"
+          className="rounded-md bg-rouge px-4 py-2 text-sm font-medium text-white hover:opacity-90 dark:bg-bombers-gold"
         >
           Try again
         </button>

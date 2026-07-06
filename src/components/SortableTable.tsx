@@ -58,9 +58,9 @@ export function SortableTable({
               <th
                 key={i}
                 onClick={() => toggle(i)}
-                className={`cursor-pointer select-none hover:text-bombers-blue dark:hover:text-bombers-gold ${
+                className={`cursor-pointer select-none hover:text-rouge dark:hover:text-bombers-gold ${
                   c.numeric ? "text-right" : "text-left"
-                } ${i === sortIndex ? "text-bombers-blue dark:text-bombers-gold" : ""}`}
+                } ${i === sortIndex ? "text-rouge dark:text-bombers-gold" : ""}`}
               >
                 {c.label}
                 {i === sortIndex ? (desc ? " ↓" : " ↑") : ""}

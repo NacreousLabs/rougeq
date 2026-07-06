@@ -1,11 +1,11 @@
-// RougeQ brand logo. A navy disc + light rim whose lower-right edge flicks out into the
-// tail of a Q — the "Q" of RougeQ. Brand hexes are inlined so the mark reads on the
-// navy nav bar and on light/dark pages without theme variants. The `Mark` is exported so
-// the favicon / OG / apple-icon routes reuse the exact same geometry.
+// RougeQ brand logo. A gold disc with a deep-rouge rim whose lower-right edge flicks out
+// into the tail of a Q — the "Q" of RougeQ. Brand hexes are inlined so the mark reads on
+// the rouge nav bar, on white, and on dark pages without theme variants. The `Mark` is
+// exported so the favicon / OG / apple-icon routes reuse the exact same geometry.
 
-const NAVY = "#072a52"; // a touch lighter than --bombers-navy so the disc reads on the navy nav
-const ICE = "#55abc9";
-const BLUE = "#0b63a3";
+const GOLD = "#ffc72c"; // disc fill — the Q body (pops on the rouge nav, holds on white)
+const ROUGE = "#7e3035"; // inner ring accent
+const INK = "#8a1420"; // deep rouge — rim + Q tail; dark enough to read on any background
 
 /** The logomark only — a square puck-Q glyph. */
 export function Mark({ size = 28, title }: { size?: number; title?: string }) {
@@ -19,14 +19,14 @@ export function Mark({ size = 28, title }: { size?: number; title?: string }) {
       role={title ? "img" : "presentation"}
       aria-label={title}
     >
-      {/* puck body */}
-      <circle cx="14" cy="16" r="10" fill={NAVY} />
+      {/* disc body */}
+      <circle cx="14" cy="16" r="10" fill={GOLD} />
       {/* inner analytics ring (depth) */}
-      <circle cx="14" cy="16" r="5.5" fill="none" stroke={BLUE} strokeWidth="1.5" opacity="0.65" />
-      {/* puck rim — the Q bowl */}
-      <circle cx="14" cy="16" r="10" fill="none" stroke={ICE} strokeWidth="2.5" />
+      <circle cx="14" cy="16" r="5.5" fill="none" stroke={ROUGE} strokeWidth="1.5" opacity="0.7" />
+      {/* rim — the Q bowl */}
+      <circle cx="14" cy="16" r="10" fill="none" stroke={INK} strokeWidth="2.5" />
       {/* Q tail */}
-      <path d="M19.5 21.5 L27.5 29" stroke={ICE} strokeWidth="3.2" strokeLinecap="round" />
+      <path d="M19.5 21.5 L27.5 29" stroke={INK} strokeWidth="3.2" strokeLinecap="round" />
     </svg>
   );
 }
@@ -53,7 +53,7 @@ export function Logo({
   // punchy and legible on the navy nav bar and the light/dark footer alike.
   const teamLabel = team ? (
     <span className="inline-flex items-center rounded-md bg-bombers-gold px-2 py-0.5">
-      <span className="text-xs font-bold uppercase tracking-wider text-bombers-navy">{team}</span>
+      <span className="text-xs font-bold uppercase tracking-wider text-rouge">{team}</span>
     </span>
   ) : null;
 

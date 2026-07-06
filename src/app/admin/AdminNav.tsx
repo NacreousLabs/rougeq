@@ -21,7 +21,7 @@ export function AdminNav() {
       <div className="mx-auto flex max-w-5xl items-center gap-4 px-6">
         <Link
           href="/admin"
-          className="shrink-0 py-3 font-display text-sm font-bold uppercase italic tracking-widest text-bombers-blue dark:text-bombers-gold"
+          className="shrink-0 py-3 font-display text-sm font-bold uppercase italic tracking-widest text-rouge dark:text-bombers-gold"
         >
           RougeQ Admin
         </Link>
@@ -35,7 +35,7 @@ export function AdminNav() {
                 aria-current={active ? "page" : undefined}
                 className={`whitespace-nowrap border-b-2 px-3 py-3 font-display text-xs font-semibold uppercase tracking-wide transition-colors ${
                   active
-                    ? "border-bombers-blue text-bombers-blue dark:border-bombers-gold dark:text-bombers-gold"
+                    ? "border-rouge text-rouge dark:border-bombers-gold dark:text-bombers-gold"
                     : "border-transparent text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-100"
                 }`}
               >

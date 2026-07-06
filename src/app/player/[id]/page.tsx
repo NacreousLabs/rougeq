@@ -71,7 +71,7 @@ export default async function PlayerPage({ params }: { params: Promise<{ id: str
 
           return (
             <section key={cat}>
-              <h2 className="mb-2 font-display text-lg font-bold uppercase tracking-wide text-bombers-navy dark:text-bombers-gold">
+              <h2 className="mb-2 font-display text-lg font-bold uppercase tracking-wide text-rouge dark:text-bombers-gold">
                 {cfg.label} · {row.gamesPlayed} GP
               </h2>
 
@@ -117,7 +117,7 @@ export default async function PlayerPage({ params }: { params: Promise<{ id: str
       </div>
 
       <p className="mt-8 text-sm">
-        <Link href="/players" className="text-bombers-blue hover:underline dark:text-bombers-gold">← Player leaders</Link>
+        <Link href="/players" className="text-rouge hover:underline dark:text-bombers-gold">← Player leaders</Link>
       </p>
     </Container>
   );

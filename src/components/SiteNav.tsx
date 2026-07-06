@@ -29,7 +29,7 @@ export function SiteNav() {
   useEffect(() => setOpen(false), [pathname]);
 
   return (
-    <nav className="sticky top-0 z-20 border-b border-black/10 bg-bombers-navy text-white">
+    <nav className="sticky top-0 z-20 border-b border-black/10 bg-rouge text-white">
       <div className="mx-auto flex max-w-5xl items-center gap-4 px-6 py-3">
         <Link href="/" aria-label="RougeQ home" className="shrink-0">
           <Logo variant="full" team={TEAM_NAME} />

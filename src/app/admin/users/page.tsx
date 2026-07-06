@@ -54,7 +54,7 @@ export default async function AdminUsersPage({
             className="mt-1 w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-900"
           />
         </label>
-        <button className="rounded-md bg-bombers-blue px-4 py-2 text-sm font-semibold text-white hover:bg-bombers-navy dark:bg-bombers-gold dark:text-bombers-navy dark:hover:bg-white">
+        <button className="rounded-md bg-rouge px-4 py-2 text-sm font-semibold text-white hover:bg-rouge dark:bg-bombers-gold dark:text-rouge dark:hover:bg-white">
           Add admin
         </button>
       </form>
@@ -72,7 +72,7 @@ export default async function AdminUsersPage({
                 {a.login}
               </a>
               {a.owner ? (
-                <span className="ml-2 rounded bg-bombers-navy/10 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-bombers-blue dark:bg-bombers-gold/10 dark:text-bombers-gold">
+                <span className="ml-2 rounded bg-rouge/10 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-rouge dark:bg-bombers-gold/10 dark:text-bombers-gold">
                   owner
                 </span>
               ) : (

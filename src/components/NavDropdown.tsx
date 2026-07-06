@@ -63,7 +63,7 @@ export function NavDropdown({ label, items }: { label: string; items: NavChild[]
               href={i.href}
               role="menuitem"
               className={`block px-3 py-1.5 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800 ${
-                isActive(pathname, i.href) ? "font-semibold text-bombers-blue dark:text-bombers-gold" : ""
+                isActive(pathname, i.href) ? "font-semibold text-rouge dark:text-bombers-gold" : ""
               }`}
             >
               {i.label}
