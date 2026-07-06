@@ -7,7 +7,7 @@ import { PageHeader } from "@/components/PageHeader";
 // Internal colour-study page (not linked in the nav). Clicking a swatch overrides
 // the live --color-rouge token on the document root, so the real nav bar and every
 // rouge surface recolor in place. "Reset" restores the shipped default.
-const DEFAULT = "#8a2830";
+const DEFAULT = "#7e3035";
 
 type Candidate = { name: string; hex: string; note: string; tag?: string };
 const CANDIDATES: Candidate[] = [
@@ -15,8 +15,8 @@ const CANDIDATES: Candidate[] = [
   { name: "Cardinal", hex: "#B11226", note: "Classic athletic red, still punchy." },
   { name: "Signal", hex: "#A51C30", note: "Rich red with a little restraint." },
   { name: "Brick Rouge", hex: "#9E3D42", note: "Muted, dusty brick — softer, warmer.", tag: "Brick" },
-  { name: "Deep Rouge", hex: "#8A2830", note: "Deep, slightly muted — the current pick.", tag: "Current" },
-  { name: "Dark Brick", hex: "#7E3035", note: "Brick, taken a shade deeper.", tag: "Brick" },
+  { name: "Deep Rouge", hex: "#8A2830", note: "Deep, slightly muted.", tag: "Brick" },
+  { name: "Dark Brick", hex: "#7E3035", note: "Brick, a shade deeper — the current pick.", tag: "Current" },
   { name: "Claret", hex: "#72232E", note: "Wine-leaning, understated and premium." },
   { name: "Bordeaux", hex: "#5E1F27", note: "Very deep — reads almost maroon." },
   { name: "Oxblood", hex: "#4A171C", note: "Near-black rouge for a severe look." },

@@ -16,7 +16,7 @@ export default function OpengraphImage() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "#8a2830",
+          background: "#7e3035",
           color: "white",
         }}
       >
