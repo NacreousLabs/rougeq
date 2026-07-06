@@ -16,6 +16,7 @@ const NAV: NavItem[] = [
   { href: "/power", label: "Power" },
   { href: "/stats", label: "Team Stats" },
   { href: "/players", label: "Players" },
+  { href: "/numbers", label: "The Numbers" },
 ];
 
 const isActive = (pathname: string, href: string) =>
