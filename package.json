@@ -13,6 +13,7 @@
     "players": "tsx scripts/players.ts",
     "ratings": "tsx scripts/ratings.ts",
     "projections": "tsx scripts/projections.ts",
+    "seed:numbers": "tsx scripts/seed-numbers.ts",
     "refresh": "tsx scripts/ingest.ts && tsx scripts/players.ts && tsx scripts/ratings.ts && tsx scripts/projections.ts"
   },
   "engines": {
