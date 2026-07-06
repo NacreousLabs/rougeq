@@ -11,8 +11,8 @@ import { TEAM_NAME } from "@/lib/team";
 
 type NavItem = { href: string; label: string } | { label: string; children: NavChild[] };
 
-// Nav is rebuilt in Phase 3 as CFL pages come online.
-const NAV: NavItem[] = [];
+// Nav is rebuilt as CFL pages come online.
+const NAV: NavItem[] = [{ href: "/power", label: "Power Rankings" }];
 
 const isActive = (pathname: string, href: string) =>
   pathname === href || pathname.startsWith(href + "/");

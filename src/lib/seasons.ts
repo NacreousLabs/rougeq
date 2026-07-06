@@ -6,7 +6,7 @@ export const FIRST_SEASON = 2010; // earliest season we ingest — extend as old
 // SEASON ROLLOVER: to move to a new season, bump this one line (e.g. 2026),
 // deploy, then trigger the "Daily data refresh" workflow to ingest it. Every
 // season label + SEASONS derives from this, so nothing else needs editing.
-export const CURRENT_SEASON = 2025;
+export const CURRENT_SEASON = 2026;
 
 /** All season ids we cover, newest first, e.g. [2025, 2024, …]. */
 export const SEASONS: number[] = (() => {
