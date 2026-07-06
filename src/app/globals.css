@@ -28,8 +28,8 @@
 /* RougeQ brand tokens. "Rouge" (the single point in Canadian football) is the primary;
    gold is the accent. Blue Bombers navy is kept for the Winnipeg mark + neutral surfaces. */
 @theme {
-  --color-rouge: #c8102e; /* primary */
-  --color-rouge-ink: #a00d24; /* darker rouge for hovers */
+  --color-rouge: #8a2830; /* primary — deep, slightly muted rouge */
+  --color-rouge-ink: #6c1e25; /* darker rouge for hovers */
   --color-bombers-gold: #ffc72c; /* accent */
   --color-bombers-navy: #041e42;
   --color-bombers-blue: #0b63a3;

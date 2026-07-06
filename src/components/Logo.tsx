@@ -4,7 +4,7 @@
 // exported so the favicon / OG / apple-icon routes reuse the exact same geometry.
 
 const GOLD = "#ffc72c"; // disc fill — the Q body (pops on the rouge nav, holds on white)
-const ROUGE = "#c8102e"; // inner ring accent
+const ROUGE = "#8a2830"; // inner ring accent
 const INK = "#8a1420"; // deep rouge — rim + Q tail; dark enough to read on any background
 
 /** The logomark only — a square puck-Q glyph. */
