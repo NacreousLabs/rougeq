@@ -7,7 +7,7 @@ import { Container } from "@/components/Container";
 import { PageHeader } from "@/components/PageHeader";
 import { TeamLogo } from "@/components/TeamLogo";
 import { CURRENT_SEASON, formatSeason } from "@/lib/seasons";
-import { CATEGORY_CONFIG } from "@/lib/stats";
+import { CATEGORY_CONFIG, aggregateTeamOffense } from "@/lib/stats";
 
 export const dynamic = "force-dynamic";
 
@@ -67,6 +67,10 @@ export default async function TeamPage({ params }: { params: Promise<{ tricode: 
   const playerRows = (await db.select().from(playersTable)) as any[];
   const pname: Record<number, string> = Object.fromEntries(playerRows.map((p) => [p.id, p.name]));
 
+  const off = aggregateTeamOffense(ps)[tricode] ?? { passYds: 0, rushYds: 0, passTd: 0, rushTd: 0 };
+  const gp = rating?.gamesPlayed || 0;
+  const perGame = (v: number) => (gp > 0 ? Math.round(v / gp) : 0);
+
   return (
     <Container size="lg">
       <PageHeader
@@ -87,6 +91,20 @@ export default async function TeamPage({ params }: { params: Promise<{ tricode: 
           <Stat label="Playoff Odds" value={proj ? `${proj.playoffPct.toFixed(0)}%` : "—"} sub={proj ? `proj ${proj.projWins.toFixed(1)}-${proj.projLosses.toFixed(1)}` : undefined} />
         </div>
       )}
+
+      {/* Offense per game */}
+      <div className="mb-8">
+        <h2 className="mb-2 font-display text-lg font-bold uppercase tracking-wide">Offense · per game</h2>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <Stat label="Total Yds" value={`${perGame(off.passYds + off.rushYds)}`} sub={`${off.passTd + off.rushTd} off TD`} />
+          <Stat label="Pass Yds" value={`${perGame(off.passYds)}`} sub={`${off.passTd} pass TD`} />
+          <Stat label="Rush Yds" value={`${perGame(off.rushYds)}`} sub={`${off.rushTd} rush TD`} />
+          <Stat label="Points" value={rating ? `${(rating.pointsFor / (gp || 1)).toFixed(1)}` : "—"} sub={rating ? `${(rating.pointsAgainst / (gp || 1)).toFixed(1)} allowed` : undefined} />
+        </div>
+        <p className="mt-1 text-xs text-zinc-400">
+          <Link href="/stats" className="hover:underline">League team stats →</Link>
+        </p>
+      </div>
 
       <div className="grid gap-8 md:grid-cols-2">
         {/* Schedule / results */}

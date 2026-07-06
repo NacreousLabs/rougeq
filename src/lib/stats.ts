@@ -81,3 +81,27 @@ export function percentileOf(values: number[], v: number): number | null {
 export function percentileColor(p: number) {
   return `hsl(${Math.max(0, Math.min(100, p)) * 1.2}, 62%, 45%)`;
 }
+
+export type TeamOffense = { passYds: number; rushYds: number; passTd: number; rushTd: number };
+
+/**
+ * Aggregate a team's offense from its players' season box scores. Team passing
+ * yards = sum of its passers' yards; rushing yards = sum of its rushers'. Total
+ * offense = pass + rush (receiving mirrors passing, so it's not added). Defensive
+ * yardage isn't derivable from the free season-aggregate data — only points
+ * against (from game scores).
+ */
+export function aggregateTeamOffense(
+  rows: Array<{ category: string; teamTricode: string | null; stats: string }>,
+): Record<string, TeamOffense> {
+  const agg: Record<string, TeamOffense> = {};
+  for (const r of rows) {
+    const t = r.teamTricode;
+    if (!t) continue;
+    const s = JSON.parse(r.stats) as Record<string, number>;
+    const a = (agg[t] ??= { passYds: 0, rushYds: 0, passTd: 0, rushTd: 0 });
+    if (r.category === "passing") { a.passYds += s.yds ?? 0; a.passTd += s.td ?? 0; }
+    else if (r.category === "rushing") { a.rushYds += s.yds ?? 0; a.rushTd += s.td ?? 0; }
+  }
+  return agg;
+}

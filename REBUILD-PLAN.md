@@ -1,43 +1,54 @@
 # RougeQ — Football (CFL) Rebuild Plan
 
-RougeQ was scaffolded from **PuckQ**, an NHL/Winnipeg Jets hockey analytics app. The
-brand, navigation, theme, and config seam have been rebranded to the **CFL / Winnipeg
-Blue Bombers** (see "What's already done"). What remains is the hard part: the app's
-**data model and analytics engine are still hockey** and must be rebuilt for football.
-
-This document is the plan for that rebuild. Nothing here is committed to yet — it exists
-so the data-source and scope decisions can be made deliberately.
+RougeQ was scaffolded from **PuckQ**, an NHL/Winnipeg Jets hockey analytics app, then
+migrated to the **CFL / Winnipeg Blue Bombers**. The migration and a working analytics
+site are **substantially built** on this branch — see the status below. This doc now serves
+as the record of what was done and what remains; the deep data-model reference lives in
+[`ANALYTICS-SPEC.md`](ANALYTICS-SPEC.md).
 
 ---
 
-## 1. Current state
+## 1. Status
 
-**Done (coherently CFL now):**
-- Brand seam — [`src/lib/team.ts`](src/lib/team.ts) (`BRAND`, `TEAM`, `TEAM_NAME`, `LEAGUE`).
-- Nav / footer / theme — [`SiteNav`](src/components/SiteNav.tsx) (empty `NAV`, awaiting CFL pages),
-  [`SiteFooter`](src/components/SiteFooter.tsx), [`globals.css`](src/app/globals.css) Bombers tokens.
-- Logo / marks — [`Logo`](src/components/Logo.tsx), [`ManitobaMark`](src/components/ManitobaMark.tsx),
-  OG / apple / favicon.
-- Copy — [`about`](src/app/about/page.tsx), [`error`](src/app/error.tsx), metadata.
-- Team colors — [`teamColors.ts`](src/data/teamColors.ts) now lists the 9 CFL clubs.
-- Season model — [`seasons.ts`](src/lib/seasons.ts) now single-year CFL seasons.
-- DB filename, package name, LICENSE, `.env.example`.
+### ✅ Built (working, on free CFL.ca JSON — no key, no browser, no paid feed)
+- **Rebrand** — brand seam, nav/footer/theme, logos, copy, team colors, single-year CFL
+  seasons, package/DB/LICENSE. Fully CFL/Blue Bombers.
+- **Schema** — [`src/db/schema.ts`](src/db/schema.ts) replaced with football tables:
+  `teams`, `games`, `team_ratings`, `players`, `player_season`, `projections` (+ CMS tables kept).
+- **Data pipeline** (`npm run refresh`):
+  - [`scripts/ingest.ts`](scripts/ingest.ts) — teams + schedule/scores from `rounds.json`/`squads.json`
+  - [`scripts/players.ts`](scripts/players.ts) — passing/rushing/receiving season stats from `get_league_stats`
+  - [`scripts/ratings.ts`](scripts/ratings.ts) — SRS/OSRS/DSRS, Elo, Pythagorean, luck, SoS
+  - [`scripts/projections.ts`](scripts/projections.ts) — Monte-Carlo playoff/division odds
+- **Pages** — homepage dashboard, `/power`, `/standings` (+projections), `/stats` (team
+  offense/scoring), `/players` (leaders + percentiles), `/team/[tricode]`, `/player/[id]`,
+  `/search`. All server-rendered, cross-linked.
+- **Analytics method** — documented + implemented per [`ANALYTICS-SPEC.md`](ANALYTICS-SPEC.md) §2–3.
 
-**Dormant hockey engine (to be replaced — the subject of this plan):**
-- **Schema** — [`src/db/schema.ts`](src/db/schema.ts): ~30 tables, all hockey (shots, faceoffs,
-  shifts, xG, on-ice/WOWY/lines, goalies, save %, draft, NHL cap contracts).
-- **Analytics components** — [`charts.tsx`](src/components/charts.tsx),
-  [`AnalyticsTabs`](src/components/AnalyticsTabs.tsx), `CompareControls`, `CompareTale`,
-  `CompareModeTabs`, `GameTypeSelect` — shaped around hockey types.
-- **Seed data** — [`contracts.ts`](src/data/contracts.ts), [`prospects.ts`](src/data/prospects.ts):
-  Jets rosters / NHL contracts.
-- **Data pipeline** — the `ingest`/`xg`/`onice`/`league`/`impact`/`summaries` scripts referenced
-  in [`package.json`](package.json) **do not exist in this repo** (only `register-refresh-task.ps1`
-  does). So there is no working ingest today; the DB is empty and the homepage is "coming soon."
+### ⏳ Remaining
+- **Deploy + automate** — ship it (Railway scaffold exists) and wire the daily refresh cron
+  (`/api/refresh` + GitHub Actions) so data self-updates.
+- **Editorial / CMS** — the `/admin` scaffold + `recaps`/`posts` tables exist but the editor UIs
+  were removed and the area is gated by **GitHub OAuth** (`AUTH_SECRET`, `AUTH_GITHUB_ID/SECRET`,
+  `ADMIN_GITHUB_LOGIN`). Needs those credentials configured before the recap / "Numbers" tools can
+  be built and verified.
+- **Detail depth** — game pages, team/player game logs (blocked: only season aggregates are free).
+- **Historical seasons** — `rounds.json` is current-season only; player stats can go back via
+  `get_league_stats?season=`, but historical *games* would need another source (e.g. CFLdb.ca).
+- **Play-by-play / EPA** — paid (Genius) or live-capture forward-only. See ANALYTICS-SPEC.md §5.
 
-**Reusable as-is (sport-agnostic):** `SortableTable`, `SeasonSelect`, `Container`, `PageHeader`,
-`SectionHeading`, `InfoTip`, `NavSearch`, `NavDropdown`, `ThemeToggle`, `Avatar`, `Markdown`,
-the admin/auth stack, and the `posts`/`recaps`/`adminUsers` tables (CMS, not sport-specific).
+**Reusable, still in place (sport-agnostic):** `SortableTable`, `Container`, `PageHeader`,
+`InfoTip`, `NavSearch`, `ThemeToggle`, `Avatar`, `Markdown`, the admin/auth stack, and the
+`posts`/`recaps`/`adminUsers` CMS tables.
+
+---
+
+## Appendix — original rebuild plan (historical)
+
+The sections below are the pre-build plan, kept for context. The data-source investigation they
+describe was carried out and resolved: **ESPN's CFL feed is dead after 2022 and the official
+`api.cfl.ca` is gone**; the working source is CFL.ca's undocumented JSON (see ANALYTICS-SPEC.md
+Appendix A). Where these sections and the Status above disagree, the Status is current.
 
 **Known dangling reference:** the footer links to `/methodology`, which has no route yet — wire
 it up (or drop the link) during Phase 4.

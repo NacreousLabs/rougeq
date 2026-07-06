@@ -14,6 +14,7 @@ type NavItem = { href: string; label: string } | { label: string; children: NavC
 const NAV: NavItem[] = [
   { href: "/standings", label: "Standings" },
   { href: "/power", label: "Power" },
+  { href: "/stats", label: "Team Stats" },
   { href: "/players", label: "Players" },
 ];
 
