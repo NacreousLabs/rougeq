@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { eq } from "drizzle-orm";
 import { db, teams, teamRatings, projections, type Team } from "@/db";
 import { Container } from "@/components/Container";
@@ -71,7 +72,7 @@ function DivTable({ title, rows }: { title: string; rows: Row[] }) {
                   <td>
                     <div className="flex items-center gap-2">
                       <TeamLogo tricode={r.tricode} size="sm" />
-                      <span className={`font-medium ${wpg ? "text-bombers-navy dark:text-bombers-gold" : ""}`}>{r.name}</span>
+                      <Link href={`/team/${r.tricode}`} className={`font-medium hover:underline ${wpg ? "text-bombers-navy dark:text-bombers-gold" : ""}`}>{r.name}</Link>
                     </div>
                   </td>
                   <td className="text-right tabular-nums font-semibold">{r.w}</td>

@@ -192,7 +192,7 @@ export function PercentileBar({
   percentile: number; // 0..100
   explain?: string;
 }) {
-  const p = Math.max(0, Math.min(100, percentile));
+  const p = Math.round(Math.max(0, Math.min(100, percentile)));
   const hue = p * 1.2; // 0 = red, 120 = green
   const color = `hsl(${hue}, 62%, 45%)`;
   return (
