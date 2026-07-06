@@ -17,7 +17,7 @@ export default async function AdminOverview() {
       <div className="mt-8">
         <Link
           href="/admin/users"
-          className="font-display text-xs font-semibold uppercase tracking-wider text-bombers-blue hover:underline dark:text-bombers-gold"
+          className="font-display text-xs font-semibold uppercase tracking-wider text-rouge hover:underline dark:text-bombers-gold"
         >
           Manage admin users →
         </Link>

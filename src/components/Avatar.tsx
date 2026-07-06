@@ -10,7 +10,7 @@ function initials(name: string): string {
 export function Avatar({ name, className = "" }: { name: string; className?: string }) {
   return (
     <div
-      className={`flex shrink-0 items-center justify-center rounded-full bg-bombers-navy font-semibold text-white dark:bg-zinc-700 ${className}`}
+      className={`flex shrink-0 items-center justify-center rounded-full bg-rouge font-semibold text-white dark:bg-zinc-700 ${className}`}
       aria-hidden
     >
       {initials(name)}

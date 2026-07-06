@@ -411,7 +411,7 @@ export function SplitBar({
         </span>
       </div>
       <div className="flex h-2 w-full overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-800">
-        <div className="h-full bg-bombers-navy dark:bg-bombers-gold" style={{ width: `${leftPct}%` }} />
+        <div className="h-full bg-rouge dark:bg-bombers-gold" style={{ width: `${leftPct}%` }} />
         <div className="h-full bg-zinc-300 dark:bg-zinc-600" style={{ width: `${100 - leftPct}%` }} />
       </div>
     </div>

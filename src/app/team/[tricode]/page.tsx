@@ -25,7 +25,7 @@ function Stat({ label, value, sub }: { label: string; value: string; sub?: strin
   return (
     <div className="rounded-lg border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-900">
       <div className="text-[10px] font-semibold uppercase tracking-wider text-zinc-400">{label}</div>
-      <div className="font-display text-2xl font-bold tabular-nums text-bombers-navy dark:text-bombers-gold">{value}</div>
+      <div className="font-display text-2xl font-bold tabular-nums text-rouge dark:text-bombers-gold">{value}</div>
       {sub && <div className="text-xs text-zinc-500">{sub}</div>}
     </div>
   );
@@ -173,7 +173,7 @@ export default async function TeamPage({ params }: { params: Promise<{ tricode: 
       </div>
 
       <p className="mt-8 text-sm">
-        <Link href="/standings" className="text-bombers-blue hover:underline dark:text-bombers-gold">← All standings</Link>
+        <Link href="/standings" className="text-rouge hover:underline dark:text-bombers-gold">← All standings</Link>
       </p>
     </Container>
   );

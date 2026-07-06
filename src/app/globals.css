@@ -25,10 +25,13 @@
   --font-display: var(--font-oswald), "Arial Narrow", system-ui, sans-serif;
 }
 
-/* Winnipeg Blue Bombers brand tokens → generate bg-bombers-navy, text-bombers-gold, etc. */
+/* RougeQ brand tokens. "Rouge" (the single point in Canadian football) is the primary;
+   gold is the accent. Blue Bombers navy is kept for the Winnipeg mark + neutral surfaces. */
 @theme {
+  --color-rouge: #c8102e; /* primary */
+  --color-rouge-ink: #a00d24; /* darker rouge for hovers */
+  --color-bombers-gold: #ffc72c; /* accent */
   --color-bombers-navy: #041e42;
-  --color-bombers-gold: #ffc72c;
   --color-bombers-blue: #0b63a3;
 }
 
@@ -59,6 +62,6 @@ body {
     @apply bg-zinc-50/70 dark:bg-zinc-900/40;
   }
   .stat-table tbody tr:hover {
-    @apply bg-bombers-gold/10;
+    @apply bg-rouge/5;
   }
 }

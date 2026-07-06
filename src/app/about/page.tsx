@@ -30,7 +30,7 @@ export default function AboutPage() {
               href="https://www.cfl.ca"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-bombers-blue hover:underline dark:text-bombers-gold"
+              className="text-rouge hover:underline dark:text-bombers-gold"
             >
               CFL.ca
             </a>

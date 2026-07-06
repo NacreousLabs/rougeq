@@ -37,7 +37,7 @@ function pctCell(p: number | null) {
 function DivTable({ title, rows }: { title: string; rows: Row[] }) {
   return (
     <section className="mb-8">
-      <h2 className="mb-2 font-display text-lg font-bold uppercase tracking-wide text-bombers-navy dark:text-bombers-gold">
+      <h2 className="mb-2 font-display text-lg font-bold uppercase tracking-wide text-rouge dark:text-bombers-gold">
         {title} Division
       </h2>
       <div className="overflow-x-auto">
@@ -72,7 +72,7 @@ function DivTable({ title, rows }: { title: string; rows: Row[] }) {
                   <td>
                     <div className="flex items-center gap-2">
                       <TeamLogo tricode={r.tricode} size="sm" />
-                      <Link href={`/team/${r.tricode}`} className={`font-medium hover:underline ${wpg ? "text-bombers-navy dark:text-bombers-gold" : ""}`}>{r.name}</Link>
+                      <Link href={`/team/${r.tricode}`} className={`font-medium hover:underline ${wpg ? "text-rouge dark:text-bombers-gold" : ""}`}>{r.name}</Link>
                     </div>
                   </td>
                   <td className="text-right tabular-nums font-semibold">{r.w}</td>

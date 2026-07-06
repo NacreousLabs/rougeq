@@ -48,7 +48,7 @@ export default async function NumbersArticle({ params }: { params: Promise<{ slu
     <Container size="sm">
       <article>
         <header className="mb-6 border-b border-zinc-200 pb-5 dark:border-zinc-800">
-          <h1 className="font-display text-3xl font-bold uppercase italic tracking-tight text-bombers-navy dark:text-bombers-gold">
+          <h1 className="font-display text-3xl font-bold uppercase italic tracking-tight text-rouge dark:text-bombers-gold">
             {post.title}
           </h1>
           {post.publishedDate && <div className="mt-1 text-xs text-zinc-400">{fmtDate(post.publishedDate)}</div>}
@@ -65,7 +65,7 @@ export default async function NumbersArticle({ params }: { params: Promise<{ slu
       </article>
 
       <p className="mt-8 text-sm">
-        <Link href="/numbers" className="text-bombers-blue hover:underline dark:text-bombers-gold">← The Numbers</Link>
+        <Link href="/numbers" className="text-rouge hover:underline dark:text-bombers-gold">← The Numbers</Link>
       </p>
     </Container>
   );

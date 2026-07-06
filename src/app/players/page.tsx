@@ -60,7 +60,7 @@ export default async function PlayersPage({
             href={`/players?cat=${c}`}
             className={`rounded-md px-3 py-1.5 text-sm font-display font-semibold uppercase tracking-wide ${
               c === cat
-                ? "bg-bombers-navy text-white dark:bg-bombers-gold dark:text-bombers-navy"
+                ? "bg-rouge text-white dark:bg-bombers-gold dark:text-rouge"
                 : "text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800"
             }`}
           >
@@ -93,7 +93,7 @@ export default async function PlayersPage({
                   <td>
                     <div className="flex items-center gap-2">
                       <Link href={`/team/${p.team}`}><TeamLogo tricode={p.team} size="xs" /></Link>
-                      <Link href={`/player/${p.playerId}`} className={`font-medium hover:underline ${isWpg ? "text-bombers-navy dark:text-bombers-gold" : ""}`}>
+                      <Link href={`/player/${p.playerId}`} className={`font-medium hover:underline ${isWpg ? "text-rouge dark:text-bombers-gold" : ""}`}>
                         {nameOf[p.playerId] ?? `#${p.playerId}`}
                       </Link>
                     </div>

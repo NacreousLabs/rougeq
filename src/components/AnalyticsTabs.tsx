@@ -22,7 +22,7 @@ export function AnalyticsTabs() {
             href={t.href}
             className={`-mb-px border-b-2 px-4 py-2 font-display text-sm font-semibold uppercase italic tracking-wider transition-colors ${
               active
-                ? "border-bombers-blue text-bombers-blue dark:border-bombers-gold dark:text-bombers-gold"
+                ? "border-rouge text-rouge dark:border-bombers-gold dark:text-bombers-gold"
                 : "border-transparent text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200"
             }`}
           >

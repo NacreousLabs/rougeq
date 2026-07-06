@@ -102,7 +102,7 @@ export function InfoTip({
             type="button"
             aria-label={label ? `Definition of ${label}` : "Show definition"}
             {...handlers}
-            className="inline-flex h-3.5 w-3.5 shrink-0 cursor-help items-center justify-center rounded-full border border-zinc-300 text-[9px] font-semibold italic leading-none text-zinc-400 transition-colors hover:border-zinc-500 hover:text-zinc-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-bombers-blue/50 dark:border-zinc-600 dark:text-zinc-500 dark:hover:border-zinc-400 dark:hover:text-zinc-300"
+            className="inline-flex h-3.5 w-3.5 shrink-0 cursor-help items-center justify-center rounded-full border border-zinc-300 text-[9px] font-semibold italic leading-none text-zinc-400 transition-colors hover:border-zinc-500 hover:text-zinc-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-rouge/50 dark:border-zinc-600 dark:text-zinc-500 dark:hover:border-zinc-400 dark:hover:text-zinc-300"
           >
             i
           </button>
@@ -112,7 +112,7 @@ export function InfoTip({
           ref={triggerRef}
           type="button"
           {...handlers}
-          className={`cursor-help border-b border-dotted border-zinc-400 text-left underline-offset-2 hover:border-zinc-600 focus:outline-none focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-bombers-blue/50 dark:border-zinc-500 dark:hover:border-zinc-300 ${className}`}
+          className={`cursor-help border-b border-dotted border-zinc-400 text-left underline-offset-2 hover:border-zinc-600 focus:outline-none focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-rouge/50 dark:border-zinc-500 dark:hover:border-zinc-300 ${className}`}
         >
           {children}
         </button>

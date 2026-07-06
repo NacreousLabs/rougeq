@@ -32,13 +32,13 @@ export default async function NumbersIndex() {
           {published.map((p) => (
             <article key={p.slug} className="py-5">
               <Link href={`/numbers/${p.slug}`} className="group">
-                <h2 className="font-display text-xl font-bold uppercase tracking-tight text-bombers-navy group-hover:underline dark:text-bombers-gold">
+                <h2 className="font-display text-xl font-bold uppercase tracking-tight text-rouge group-hover:underline dark:text-bombers-gold">
                   {p.title}
                 </h2>
               </Link>
               {p.publishedDate && <div className="mt-0.5 text-xs text-zinc-400">{fmtDate(p.publishedDate)}</div>}
               {p.excerpt && <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">{p.excerpt}</p>}
-              <Link href={`/numbers/${p.slug}`} className="mt-2 inline-block text-xs text-bombers-blue hover:underline dark:text-bombers-gold">
+              <Link href={`/numbers/${p.slug}`} className="mt-2 inline-block text-xs text-rouge hover:underline dark:text-bombers-gold">
                 Read →
               </Link>
             </article>
