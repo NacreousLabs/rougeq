@@ -61,10 +61,10 @@ export default async function Home() {
       {/* Bombers snapshot */}
       {wpg && (
         <section className="mb-8">
-          <div className="mb-3 flex items-center gap-2">
+          <Link href={`/team/${TEAM}`} className="mb-3 inline-flex items-center gap-2 hover:opacity-80">
             <TeamLogo tricode={TEAM} size="md" />
             <h2 className="font-display text-xl font-bold uppercase tracking-wide">{name[TEAM] ?? TEAM_NAME}</h2>
-          </div>
+          </Link>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
             <Stat label="Record" value={`${wpg.wins}-${wpg.losses}${wpg.ties ? `-${wpg.ties}` : ""}`} sub={`${wpg.pointsFor}–${wpg.pointsAgainst} pts`} />
             <Stat label="SRS Rank" value={`#${wpgRank}`} sub={`${wpg.srs >= 0 ? "+" : ""}${wpg.srs?.toFixed(1)} SRS`} />
@@ -123,7 +123,7 @@ export default async function Home() {
                 <div className="flex items-center gap-2">
                   <span className="w-4 text-right text-zinc-400 tabular-nums">{i + 1}</span>
                   <TeamLogo tricode={r.tricode} size="xs" />
-                  <span className="font-medium">{name[r.tricode] ?? r.tricode}</span>
+                  <Link href={`/team/${r.tricode}`} className="font-medium hover:underline">{name[r.tricode] ?? r.tricode}</Link>
                 </div>
                 <span className="tabular-nums font-semibold">{r.srs >= 0 ? "+" : ""}{r.srs?.toFixed(1)}</span>
               </div>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { desc, eq } from "drizzle-orm";
 import { db, teams, teamRatings, type Team } from "@/db";
 import { Container } from "@/components/Container";
@@ -73,7 +74,7 @@ export default async function PowerRankingsPage() {
                   <td>
                     <div className="flex items-center gap-2">
                       <TeamLogo tricode={r.tricode} size="sm" />
-                      <span className="font-medium">{nameOf[r.tricode] ?? r.tricode}</span>
+                      <Link href={`/team/${r.tricode}`} className="font-medium hover:underline">{nameOf[r.tricode] ?? r.tricode}</Link>
                     </div>
                   </td>
                   <td className="text-right tabular-nums whitespace-nowrap">

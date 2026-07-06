@@ -6,81 +6,13 @@ import { Container } from "@/components/Container";
 import { PageHeader } from "@/components/PageHeader";
 import { TeamLogo } from "@/components/TeamLogo";
 import { CURRENT_SEASON, formatSeason } from "@/lib/seasons";
+import { CATEGORY_CONFIG as CONFIG, CATEGORY_KEYS as CATS, percentileOf, percentileColor } from "@/lib/stats";
 
 export const metadata: Metadata = {
   title: "Player Leaders — RougeQ",
   description: "CFL passing, rushing, and receiving leaders with league-percentile context.",
 };
 export const dynamic = "force-dynamic";
-
-type Col = { label: string; key: string; fmt?: (v: number) => string; strong?: boolean };
-type Cfg = {
-  label: string;
-  sortKey: string;
-  rateKey: string; // headline rate stat for the percentile bar
-  rateLabel: string;
-  qualify: (s: Record<string, number>) => boolean;
-  cols: Col[];
-};
-
-const int = (v: number) => Math.round(v).toLocaleString("en-US");
-const one = (v: number) => v.toFixed(1);
-
-const CONFIG: Record<string, Cfg> = {
-  passing: {
-    label: "Passing",
-    sortKey: "yds",
-    rateKey: "rating",
-    rateLabel: "Rating",
-    qualify: (s) => s.att >= 20,
-    cols: [
-      { label: "Cmp", key: "comp", fmt: int },
-      { label: "Att", key: "att", fmt: int },
-      { label: "Cmp%", key: "compPct", fmt: one },
-      { label: "Yds", key: "yds", fmt: int, strong: true },
-      { label: "TD", key: "td", fmt: int },
-      { label: "INT", key: "int", fmt: int },
-      { label: "Rating", key: "rating", fmt: one },
-      { label: "Y/A", key: "ya", fmt: one },
-    ],
-  },
-  rushing: {
-    label: "Rushing",
-    sortKey: "yds",
-    rateKey: "avg",
-    rateLabel: "Y/C",
-    qualify: (s) => s.att >= 15,
-    cols: [
-      { label: "Att", key: "att", fmt: int },
-      { label: "Yds", key: "yds", fmt: int, strong: true },
-      { label: "Avg", key: "avg", fmt: one },
-      { label: "Long", key: "long", fmt: int },
-      { label: "TD", key: "td", fmt: int },
-    ],
-  },
-  receiving: {
-    label: "Receiving",
-    sortKey: "yds",
-    rateKey: "avg",
-    rateLabel: "Y/R",
-    qualify: (s) => s.rec >= 8,
-    cols: [
-      { label: "Tgt", key: "targets", fmt: int },
-      { label: "Rec", key: "rec", fmt: int },
-      { label: "Yds", key: "yds", fmt: int, strong: true },
-      { label: "YAC", key: "yac", fmt: int },
-      { label: "Avg", key: "avg", fmt: one },
-      { label: "Long", key: "long", fmt: int },
-      { label: "TD", key: "td", fmt: int },
-    ],
-  },
-};
-
-const CATS = Object.keys(CONFIG);
-
-function percentileColor(p: number) {
-  return `hsl(${Math.max(0, Math.min(100, p)) * 1.2}, 62%, 45%)`;
-}
 
 export default async function PlayersPage({
   searchParams,
@@ -109,13 +41,8 @@ export default async function PlayersPage({
   }));
 
   // League percentile for the headline rate stat, among qualified players.
-  const qualified = parsed.filter((p) => cfg.qualify(p.s));
-  const rateVals = qualified.map((p) => p.s[cfg.rateKey]).sort((a, b) => a - b);
-  const pct = (v: number) => {
-    if (rateVals.length < 2) return null;
-    const below = rateVals.filter((x) => x < v).length;
-    return (below / (rateVals.length - 1)) * 100;
-  };
+  const rateVals = parsed.filter((p) => cfg.qualify(p.s)).map((p) => p.s[cfg.rateKey]);
+  const pct = (v: number) => percentileOf(rateVals, v);
 
   const sorted = [...parsed].sort((a, b) => (b.s[cfg.sortKey] ?? 0) - (a.s[cfg.sortKey] ?? 0)).slice(0, 30);
 
@@ -165,10 +92,10 @@ export default async function PlayersPage({
                   <td className="text-right tabular-nums text-zinc-500">{i + 1}</td>
                   <td>
                     <div className="flex items-center gap-2">
-                      <TeamLogo tricode={p.team} size="xs" />
-                      <span className={`font-medium ${isWpg ? "text-bombers-navy dark:text-bombers-gold" : ""}`}>
+                      <Link href={`/team/${p.team}`}><TeamLogo tricode={p.team} size="xs" /></Link>
+                      <Link href={`/player/${p.playerId}`} className={`font-medium hover:underline ${isWpg ? "text-bombers-navy dark:text-bombers-gold" : ""}`}>
                         {nameOf[p.playerId] ?? `#${p.playerId}`}
-                      </span>
+                      </Link>
                     </div>
                   </td>
                   <td className="text-right tabular-nums text-zinc-500">{p.gp}</td>
